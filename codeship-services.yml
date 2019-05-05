@@ -7,8 +7,16 @@ demo:
     - postgres
   environment:
     TEST_TOKEN: Testing123
+  volumes:
+    - ./tmp:/code
 redis:
   image: redis:3.2.11
 postgres:
   image: healthcheck/postgres:alpine
+demo_volumes:
+  build:
+    image: myapp
+    dockerfile: Dockerfile.volumes
+  volumes_from:
+    - demo
 
